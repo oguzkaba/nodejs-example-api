@@ -2,37 +2,37 @@ const express = require('express');
 const router = express.Router();
 const persons = require('../services/persons');
 
-/* GET items. */
+/* GET persons. */
 router.get('/', async function(req, res, next) {
   try {
     res.json(await persons.getMultiple(req.query.page));
   } catch (err) {
-    console.error(`Error while getting items `, err.message);
+    console.error(`Error while getting persons `, err.message);
     next(err);
   }
 });
 
-/* POST item */
+/* POST person */
 router.post('/', async function(req, res, next) {
   try {
     res.json(await persons.create(req.body));
   } catch (err) {
-    console.error(`Error while creating item`, err.message);
+    console.error(`Error while creating person`, err.message);
     next(err);
   }
 });
 
-/* PUT item */
+/* PUT person */
 router.put('/:id', async function(req, res, next) {
   try {
     res.json(await persons.update(req.params.id, req.body));
   } catch (err) {
-    console.error(`Error while updating item`, err.message);
+    console.error(`Error while updating person`, err.message);
     next(err);
   }
 });
 
-/* DELETE item */
+/* DELETE person */
 router.delete('/:id', async function(req, res, next) {
   try {
     res.json(await persons.remove(req.params.id));
