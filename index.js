@@ -3,6 +3,11 @@ const bodyParser = require("body-parser");
 const app = express();
 const port = 3000;
 const itemsRouter = require("./routes/items");
+const itemRouter = require("./routes/items");
+const personsRouter = require("./routes/persons");
+const personRouter = require("./routes/persons");
+const swaggerUi = require('swagger-ui-express');
+const swaggerFile = require('./swagger_output.json');
 //app.use(express.json());
 app.use(bodyParser.json());
 
@@ -14,7 +19,16 @@ app.get("/api/", (req, res) => {
   res.json({ message: "ok" });
 });
 
+//Swagger UI
+app.use('/api/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
+
+//Item routes
 app.use("/api/items/", itemsRouter);
+app.use("/api/item/", itemRouter);
+
+//Person routes
+app.use("/api/persons/", personsRouter);
+app.use("/api/person/", personRouter);
 
 /* Error handler middleware */
 app.use((err, req, res, next) => {

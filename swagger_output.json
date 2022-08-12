@@ -1,0 +1,271 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Items RestAPI",
+    "description": "NodeJS REST API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api"
+    }
+  ],
+  "paths": {
+    "/items": {
+      "get": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "tags": [
+          "Items"
+        ],
+        "summary": "Get all items",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Items"
+        ],
+        "summary": "Add new item",
+        "requestBody": {
+          "description": "Item to add",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/item"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "item"
+      }
+    },
+    "/item/{id}": {
+      "put": {
+        "tags": [
+          "Items"
+        ],
+        "summary": "Update item",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Update to Item",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/item"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "item"
+      },
+      "delete": {
+        "tags": [
+          "Items"
+        ],
+        "summary": "Delete item",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/persons": {
+      "get": {
+        "tags": [
+          "Persons"
+        ],
+        "summary": "Get all Persons",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Persons"
+        ],
+        "summary": "Add new person",
+        "requestBody": {
+          "description": "person to add",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/person"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "person"
+      }
+    },
+    "/persons/{id}": {
+      "put": {
+        "tags": [
+          "Persons"
+        ],
+        "summary": "Update person",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Update to person",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/person"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "item"
+      },
+      "delete": {
+        "tags": [
+          "Persons"
+        ],
+        "summary": "Delete person",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {}
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-KEY"
+      }
+    },
+    "schemas": {
+      "item": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "person": {
+        "type": "object",
+        "properties": {
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
