@@ -10,14 +10,42 @@
       "url": "http://localhost:3000/api"
     }
   ],
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ],
   "paths": {
+    "/auth/login": {
+      
+      "post": {
+        "security": [],
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Login system(Generate Token)",
+        "requestBody": {
+          "description": "Generate Token",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/login"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "token"
+      }
+    },
     "/items": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
         "tags": [
           "Items"
         ],
@@ -34,10 +62,6 @@
         "responses": {
           "200": {
             "description": "OK",
-            "content": {}
-          },
-          "401": {
-            "description": "Unauthorized",
             "content": {}
           }
         }
@@ -236,7 +260,7 @@
       "ApiKeyAuth": {
         "type": "apiKey",
         "in": "header",
-        "name": "X-API-KEY"
+        "name": "gfg_token_header_key"
       }
     },
     "schemas": {
@@ -263,6 +287,17 @@
           },
           "last_name": {
             "type": "string"
+          }
+        }
+      },
+      "login": {
+        "type": "object",
+        "properties": {
+          "time": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "integer"
           }
         }
       }
