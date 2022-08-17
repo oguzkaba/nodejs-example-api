@@ -1,15 +1,13 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-const itemsRouter = require("./routes/items");
-const itemRouter = require("./routes/items");
-const personsRouter = require("./routes/persons");
-const personRouter = require("./routes/persons");
-const authRouter = require("./routes/login.js");
+const itemsRouter = require("./src/routes/items.route");
+const personsRouter = require("./src/routes/persons.route");
+const authRouter = require("./src/routes/login.route");
 const swaggerUi = require('swagger-ui-express');
 const swaggerFile = require('./swagger_output.json');
 const dotenv = require('dotenv');
-const checkAuth = require('./middlewares/checkauth');
+const checkAuth = require('./src/middlewares/checkauth');
 
 //app.use(express.json());
 app.use(bodyParser.json());
@@ -22,11 +20,11 @@ app.use('/api/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 //Item routes
 app.use("/api/items/", checkAuth, itemsRouter);
-app.use("/api/item/", checkAuth, itemRouter);
+app.use("/api/item/", checkAuth, itemsRouter);
 
 //Person routes
 app.use("/api/persons/", checkAuth, personsRouter);
-app.use("/api/person/", checkAuth, personRouter);
+app.use("/api/person/", checkAuth, personsRouter);
 
 //Auth routes
 app.use("/api/auth/", authRouter);
