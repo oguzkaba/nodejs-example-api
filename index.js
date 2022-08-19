@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const itemsRouter = require("./src/routes/items.route");
 const personsRouter = require("./src/routes/persons.route");
-const authRouter = require("./src/routes/login.route");
+const authRouter = require("./src/routes/user.route");
 const swaggerUi = require('swagger-ui-express');
 const swaggerFile = require('./swagger_output.json');
 const dotenv = require('dotenv');
@@ -20,11 +20,9 @@ app.use('/api/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 //Item routes
 app.use("/api/items/", checkAuth, itemsRouter);
-app.use("/api/item/", checkAuth, itemsRouter);
 
 //Person routes
 app.use("/api/persons/", checkAuth, personsRouter);
-app.use("/api/person/", checkAuth, personsRouter);
 
 //Auth routes
 app.use("/api/auth/", authRouter);

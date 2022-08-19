@@ -4,7 +4,7 @@ const config = {
       host: "localhost",
       user: "root",
       password: "",
-      database: "items",
+      database: "qms",
     },
     listPerPage: 15,
   };
