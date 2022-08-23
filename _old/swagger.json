@@ -1,0 +1,210 @@
+"/items": {
+    "get": {
+      "tags": [
+        "Items"
+      ],
+      "summary": "Get all items",
+      "parameters": [
+        {
+          "name": "page",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {}
+        }
+      }
+    },
+    "post": {
+      "tags": [
+        "Items"
+      ],
+      "summary": "Add new item",
+      "requestBody": {
+        "description": "Item to add",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/item"
+            }
+          }
+        },
+        "required": true
+      },
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {}
+        }
+      },
+      "x-codegen-request-body-name": "item"
+    }
+  },
+  "/item/{id}": {
+    "put": {
+      "tags": [
+        "Items"
+      ],
+      "summary": "Update item",
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "requestBody": {
+        "description": "Update to Item",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/item"
+            }
+          }
+        },
+        "required": true
+      },
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {}
+        }
+      },
+      "x-codegen-request-body-name": "item"
+    },
+    "delete": {
+      "tags": [
+        "Items"
+      ],
+      "summary": "Delete item",
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {}
+        }
+      }
+    }
+  },
+  "/persons": {
+    "get": {
+      "tags": [
+        "Persons"
+      ],
+      "summary": "Get all Persons",
+      "parameters": [
+        {
+          "name": "page",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {}
+        }
+      }
+    },
+    "post": {
+      "tags": [
+        "Persons"
+      ],
+      "summary": "Add new person",
+      "requestBody": {
+        "description": "person to add",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/person"
+            }
+          }
+        },
+        "required": true
+      },
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {}
+        }
+      },
+      "x-codegen-request-body-name": "person"
+    }
+  },
+  "/persons/{id}": {
+    "put": {
+      "tags": [
+        "Persons"
+      ],
+      "summary": "Update person",
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "requestBody": {
+        "description": "Update to person",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/person"
+            }
+          }
+        },
+        "required": true
+      },
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {}
+        }
+      },
+      "x-codegen-request-body-name": "item"
+    },
+    "delete": {
+      "tags": [
+        "Persons"
+      ],
+      "summary": "Delete person",
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {}
+        }
+      }
+    }
+  }

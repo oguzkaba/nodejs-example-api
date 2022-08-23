@@ -17,7 +17,6 @@
   ],
   "paths": {
     "/auth/login": {
-      
       "post": {
         "security": [],
         "tags": [
@@ -27,7 +26,7 @@
         "requestBody": {
           "description": "Generate Token",
           "content": {
-            "*/*": {
+            "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/login"
               }
@@ -44,39 +43,19 @@
         "x-codegen-request-body-name": "token"
       }
     },
-    "/items": {
-      "get": {
-        "tags": [
-          "Items"
-        ],
-        "summary": "Get all items",
-        "parameters": [
-          {
-            "name": "page",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {}
-          }
-        }
-      },
+    "/auth/register": {
       "post": {
+        "security": [],
         "tags": [
-          "Items"
+          "Auth"
         ],
-        "summary": "Add new item",
+        "summary": "Register system(Generate Token)",
         "requestBody": {
-          "description": "Item to add",
+          "description": "Generate Token",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/item"
+                "$ref": "#/components/schemas/register"
               }
             }
           },
@@ -85,173 +64,12 @@
         "responses": {
           "200": {
             "description": "OK",
-            "content": {}
+            "content": {
+
+            }
           }
         },
-        "x-codegen-request-body-name": "item"
-      }
-    },
-    "/item/{id}": {
-      "put": {
-        "tags": [
-          "Items"
-        ],
-        "summary": "Update item",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "Update to Item",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/item"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {}
-          }
-        },
-        "x-codegen-request-body-name": "item"
-      },
-      "delete": {
-        "tags": [
-          "Items"
-        ],
-        "summary": "Delete item",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {}
-          }
-        }
-      }
-    },
-    "/persons": {
-      "get": {
-        "tags": [
-          "Persons"
-        ],
-        "summary": "Get all Persons",
-        "parameters": [
-          {
-            "name": "page",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {}
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Persons"
-        ],
-        "summary": "Add new person",
-        "requestBody": {
-          "description": "person to add",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/person"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {}
-          }
-        },
-        "x-codegen-request-body-name": "person"
-      }
-    },
-    "/persons/{id}": {
-      "put": {
-        "tags": [
-          "Persons"
-        ],
-        "summary": "Update person",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "Update to person",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/person"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {}
-          }
-        },
-        "x-codegen-request-body-name": "item"
-      },
-      "delete": {
-        "tags": [
-          "Persons"
-        ],
-        "summary": "Delete person",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {}
-          }
-        }
+        "x-codegen-request-body-name": "token"
       }
     }
   },
@@ -260,43 +78,40 @@
       "ApiKeyAuth": {
         "type": "apiKey",
         "in": "header",
-        "name": "gfg_token_header_key"
+        "name": "token_header_key"
       }
     },
     "schemas": {
-      "item": {
-        
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "quantity": {
-            "type": "integer"
-          }
-        }
-      },
-      "person": {
-        "type": "object",
-        "properties": {
-          "first_name": {
-            "type": "string"
-          },
-          "last_name": {
-            "type": "string"
-          }
-        }
-      },
       "login": {
         "type": "object",
         "properties": {
-          "time": {
+          "userName": {
             "type": "string"
           },
-          "userId": {
+          "userPassword": {
+            "type": "string"
+          }
+        }
+      },
+      "register": {
+        "type": "object",
+        "properties": {
+          "userName": {
+            "type": "string"
+          },
+          "userPassword": {
+            "type": "string"
+          },
+          "userActual": {
+            "type": "integer"
+          },
+          "LevelId": {
+            "type": "number"
+          },
+          "PersonnelId": {
+            "type": "integer"
+          },
+          "DepartmentId": {
             "type": "integer"
           }
         }

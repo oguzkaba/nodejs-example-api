@@ -10,4 +10,24 @@ async function login(userName, userPassword) {
     return data
 }
 
-module.exports = { login }
+/**
+ * @param {object} user The object
+ */
+
+async function register(user, token) {
+
+    const result = await db.query(
+        `INSERT INTO user (userName, userPassword, userActual, LevelId, PersonnelId, DepartmentId ) 
+            VALUES ("${user.userName}", "${user.userPassword}", "${user.userActual}", "${user.LevelId}", "${user.PersonnelId}", "${user.DepartmentId}")`
+    );
+
+    let message = 'Error in creating items';
+
+    if (result.affectedRows) {
+        message = 'User register successfully';
+    }
+
+    return { message, token };
+}
+
+module.exports = { login, register }
