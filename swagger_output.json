@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Items RestAPI",
-    "description": "NodeJS REST API",
+    "title": "QMS RestAPI",
+    "description": "[ Base URL: http://localhost:3000/api ]",
     "version": "1.0.0"
   },
   "servers": [
@@ -22,7 +22,7 @@
         "tags": [
           "Auth"
         ],
-        "summary": "Login system(Generate Token)",
+        "summary": "Login system (Generate Token)",
         "requestBody": {
           "description": "Generate Token",
           "content": {
@@ -49,7 +49,17 @@
         "tags": [
           "Auth"
         ],
-        "summary": "Register system(Generate Token)",
+        "summary": "Register system (only by Admin)",
+        "parameters": [
+          {
+            "name": "token_header_key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "description": "Generate Token",
           "content": {
@@ -64,9 +74,7 @@
         "responses": {
           "200": {
             "description": "OK",
-            "content": {
-
-            }
+            "content": {}
           }
         },
         "x-codegen-request-body-name": "token"

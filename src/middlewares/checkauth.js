@@ -20,7 +20,7 @@ module.exports = ("/checkAuth", (req, res, next) => {
             next();
         }
         else {
-            return res.status(401).json({ "status": "401", "message": "Access Denied" });
+            return res.status(401).json({ "status": "401", "message": "Access Denied - UnAuthorized" });
         }
 
 

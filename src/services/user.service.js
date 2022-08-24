@@ -1,6 +1,15 @@
 const db = require('./db.service');
 const helper = require('../../helper');
 
+async function getAllUsers() {
+    const rows = await db.query(
+        `SELECT * FROM user`
+    );
+    const data = helper.emptyOrRows(rows);
+
+    return data
+}
+
 async function login(userName, userPassword) {
     const rows = await db.query(
         `SELECT * FROM user WHERE userName="${userName}" AND userPassword="${userPassword}"`
@@ -30,4 +39,4 @@ async function register(user, token) {
     return { message, token };
 }
 
-module.exports = { login, register }
+module.exports = { getAllUsers, login, register }
